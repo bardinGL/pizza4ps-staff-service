@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="DependencyInjection\Options\" />
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <PackageReference Include="MediatR" Version="12.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pizza4Ps.PizzaService.Application.Contract\Pizza4Ps.StaffService.Application.Contract.csproj" />
+    <ProjectReference Include="..\Pizza4Ps.PizzaService.Domain\Pizza4Ps.StaffService.Domain.csproj" />
+    <ProjectReference Include="..\Pizza4Ps.PizzaService.Infrastructure\Pizza4Ps.StaffService.Infrastructure.csproj" />
+    <ProjectReference Include="..\Pizza4Ps.PizzaService.Persistence\Pizza4Ps.StaffService.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
