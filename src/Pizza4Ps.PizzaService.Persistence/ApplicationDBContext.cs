@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace Pizza4Ps.PizzaService.Persistence
 {
-	public sealed class ApplicationDBContext : IdentityDbContext<AppUser, AppRole, Guid>
+    public sealed class ApplicationDBContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
         private readonly AuditSaveChangesInterceptor _auditInterceptor;
 
@@ -45,27 +45,11 @@ namespace Pizza4Ps.PizzaService.Persistence
         #region Configuration DbSet
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppRole> AppRoles { get; set; }
-        public DbSet<Booking> Bookings { get; set; }
-        public DbSet<Category> Categories { get; set; }
         public DbSet<Config> Configs { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<Notification> Notifications { get; set; }
-        public DbSet<Option> Options { get; set; }
-        public DbSet<OptionItem> OptionItems { get; set; }
-        public DbSet<OptionItemOrderItem> OptionItemOrderItems { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderInTable> OrderItems { get; set; }
-        public DbSet<OrderVoucher> OrderVouchers { get; set; }
-        public DbSet<Payment> Payments { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<StaffSchedule> StaffSchedules { get; set; }
         public DbSet<StaffZone> StaffZones { get; set; }
         public DbSet<StaffZoneSchedule> StaffZoneSchedules { get; set; }
-        public DbSet<Table> Tables { get; set; }
-        public DbSet<TableBooking> TableBookings { get; set; }
-        public DbSet<Voucher> Vouchers { get; set; }
         public DbSet<Zone> Zones { get; set; }
         #endregion
     }

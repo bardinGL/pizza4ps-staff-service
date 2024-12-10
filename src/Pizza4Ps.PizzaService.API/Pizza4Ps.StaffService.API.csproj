@@ -16,12 +16,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\" />
     <Folder Include="DependencyInjection\Options\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pizza4Ps.PizzaService.Application.Contract\Pizza4Ps.PizzaService.Application.Contract.csproj" />
-    <ProjectReference Include="..\Pizza4Ps.PizzaService.Application\Pizza4Ps.PizzaService.Application.csproj" />
+    <ProjectReference Include="..\Pizza4Ps.PizzaService.Application.Contract\Pizza4Ps.StaffService.Application.Contract.csproj" />
+    <ProjectReference Include="..\Pizza4Ps.PizzaService.Application\Pizza4Ps.StaffService.Application.csproj" />
+    <ProjectReference Include="..\Pizza4Ps.PizzaService.Domain\Pizza4Ps.StaffService.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,7 +10,6 @@ namespace Pizza4Ps.PizzaService.Domain.Entities
         public string? Description { get; set; }
         public ZoneTypeEnum Status { get; set; } = ZoneTypeEnum.Available;
 
-        public virtual ICollection<Table> Tables { get; set; }
         public virtual ICollection<StaffZone> StaffZones { get; set; }
         public virtual ICollection<StaffSchedule> StaffSchedules { get; set; }
 
