@@ -18,5 +18,11 @@ namespace Pizza4Ps.StaffService.Persistence.Constants
         internal const string AppRoleClaims = nameof(AppRoleClaims); // IdentityRoleClaim
         internal const string AppUserLogins = nameof(AppUserLogins); // IdentityRoleClaim
         internal const string AppUserTokens = nameof(AppUserTokens); // IdentityUserToken
-    }
+
+		internal const string HistorySchedule = nameof(HistorySchedule);
+		internal const string IndividualSchedule = nameof(IndividualSchedule);
+		internal const string ShiftExchange = nameof(ShiftExchange);
+		internal const string Staff = nameof(Staff);
+		internal const string Store = nameof(Store);
+	}
 }

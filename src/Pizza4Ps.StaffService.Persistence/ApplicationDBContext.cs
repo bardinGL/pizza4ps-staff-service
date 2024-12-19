@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Pizza4Ps.StaffService.Domain.Abstractions.Entities;
+using Pizza4Ps.StaffService.Domain.Entities;
 using Pizza4Ps.StaffService.Domain.Entities.Identity;
 using Pizza4Ps.StaffService.Persistence.Intercepter;
 using System.Linq.Expressions;
@@ -44,6 +45,11 @@ namespace Pizza4Ps.StaffService.Persistence
         #region Configuration DbSet
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppRole> AppRoles { get; set; }
-        #endregion
-    }
+		public DbSet<HistorySchedule> HistorySchedules { get; set; }
+		public DbSet<IndividualSchedule> IndividualSchedules { get; set; }
+		public DbSet<ShiftExchange> ShiftExchanges { get; set; }
+		public DbSet<Staff> Staffs { get; set; }
+		public DbSet<Store> Stores { get; set; }
+		#endregion
+	}
 }
