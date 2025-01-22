@@ -1,6 +1,6 @@
 ﻿using Pizza4Ps.StaffService.Domain.Enums;
 
-namespace Pizza4Ps.StaffService.Application.DTOs.Staffs
+namespace Pizza4Ps.StaffService.Application.DTOs
 {
     public class StaffDto
     {

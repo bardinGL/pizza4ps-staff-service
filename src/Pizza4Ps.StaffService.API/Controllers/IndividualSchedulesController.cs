@@ -2,18 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Pizza4Ps.StaffService.API.Constants;
 using Pizza4Ps.StaffService.API.Models;
-using Pizza4Ps.StaffService.Application.DTOs.IndividualSchedules;
 using Pizza4Ps.StaffService.Application.UserCases.V1.IndividualSchedules.Commands.CreateIndividualSchedule;
+using Pizza4Ps.StaffService.Application.UserCases.V1.IndividualSchedules.Commands.DeleteIndividualSchedule;
 using Pizza4Ps.StaffService.Application.UserCases.V1.IndividualSchedules.Commands.RestoreIndividualSchedule;
 using Pizza4Ps.StaffService.Application.UserCases.V1.IndividualSchedules.Commands.UpdateIndividualSchedule;
+using Pizza4Ps.StaffService.Application.UserCases.V1.IndividualSchedules.Queries.GetIndividualScheduleById;
 using Pizza4Ps.StaffService.Application.UserCases.V1.IndividualSchedules.Queries.GetListIndividualSchedule;
 using Pizza4Ps.StaffService.Application.UserCases.V1.IndividualSchedules.Queries.GetListIndividualScheduleIgnoreQueryFilter;
-using Pizza4Ps.StaffService.Application.UserCases.V1.IndividualSchedules.Queries.GetIndividualScheduleById;
-using Pizza4Ps.StaffService.Application.UserCases.V1.IndividualSchedules.Commands.DeleteIndividualSchedule;
 
 namespace Pizza4Ps.StaffService.API.Controllers
 {
-	[Route("api/individual-schedules")]
+    [Route("api/individual-schedules")]
 	[ApiController]
 	public class IndividualSchedulesController : ControllerBase
 	{
@@ -27,9 +26,9 @@ namespace Pizza4Ps.StaffService.API.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> CreateAsync([FromBody] CreateIndividualScheduleDto request)
+		public async Task<IActionResult> CreateAsync([FromBody] CreateIndividualScheduleCommand request)
 		{
-			var result = await _sender.Send(new CreateIndividualScheduleCommand { CreateIndividualScheduleDto = request });
+			var result = await _sender.Send(request);
 			return Ok(new ApiResponse
 			{
 				Result = result,
@@ -39,9 +38,9 @@ namespace Pizza4Ps.StaffService.API.Controllers
 		}
 
 		[HttpGet("ignore-filter")]
-		public async Task<IActionResult> GetListIgnoreQueryFilterAsync([FromQuery] GetListIndividualScheduleIgnoreQueryFilterDto query)
+		public async Task<IActionResult> GetListIgnoreQueryFilterAsync([FromQuery] GetListIndividualScheduleIgnoreQueryFilterQuery query)
 		{
-			var result = await _sender.Send(new GetListIndividualScheduleIgnoreQueryFilterQuery { GetListIndividualScheduleIgnoreQueryFilterDto = query });
+			var result = await _sender.Send(query);
 			return Ok(new ApiResponse
 			{
 				Result = result,
@@ -51,9 +50,9 @@ namespace Pizza4Ps.StaffService.API.Controllers
 		}
 
 		[HttpGet()]
-		public async Task<IActionResult> GetListAsync([FromQuery] GetListIndividualScheduleDto query)
+		public async Task<IActionResult> GetListAsync([FromQuery] GetListIndividualScheduleQuery query)
 		{
-			var result = await _sender.Send(new GetListIndividualScheduleQuery { GetListIndividualScheduleDto = query });
+			var result = await _sender.Send(query);
 			return Ok(new ApiResponse
 			{
 				Result = result,
@@ -75,12 +74,13 @@ namespace Pizza4Ps.StaffService.API.Controllers
 		}
 
 		[HttpPut("{id}")]
-		public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] UpdateIndividualScheduleDto request)
-		{
-			var result = await _sender.Send(new UpdateIndividualScheduleCommand { Id = id, UpdateIndividualScheduleDto = request });
+		public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] UpdateIndividualScheduleCommand request)
+        {
+            request.Id = id;
+            await _sender.Send(request);
 			return Ok(new ApiResponse
 			{
-				Result = result,
+				Success = true,
 				Message = Message.UPDATED_SUCCESS,
 				StatusCode = StatusCodes.Status200OK
 			});

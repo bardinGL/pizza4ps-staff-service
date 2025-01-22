@@ -1,19 +1,18 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Pizza4Ps.PizzaService.Application.UserCases.V1.HistorySchedules.Commands.DeleteHistorySchedule;
 using Pizza4Ps.StaffService.API.Constants;
 using Pizza4Ps.StaffService.API.Models;
-using Pizza4Ps.StaffService.Application.DTOs.HistorySchedules;
 using Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Commands.CreateHistorySchedule;
 using Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Commands.RestoreHistorySchedule;
 using Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Commands.UpdateHistorySchedule;
+using Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Queries.GetHistoryScheduleById;
 using Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Queries.GetListHistorySchedule;
 using Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Queries.GetListHistoryScheduleIgnoreQueryFilter;
-using Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Queries.GetHistoryScheduleById;
-using Pizza4Ps.PizzaService.Application.UserCases.V1.HistorySchedules.Commands.DeleteHistorySchedule;
 
 namespace Pizza4Ps.StaffService.API.Controllers
 {
-	[Route("api/history-schedules")]
+    [Route("api/history-schedules")]
 	[ApiController]
 	public class HistorySchedulesController : ControllerBase
 	{
@@ -27,9 +26,9 @@ namespace Pizza4Ps.StaffService.API.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> CreateAsync([FromBody] CreateHistoryScheduleDto request)
+		public async Task<IActionResult> CreateAsync([FromBody] CreateHistoryScheduleCommand request)
 		{
-			var result = await _sender.Send(new CreateHistoryScheduleCommand { CreateHistoryScheduleDto = request });
+			var result = await _sender.Send(request);
 			return Ok(new ApiResponse
 			{
 				Result = result,
@@ -39,9 +38,9 @@ namespace Pizza4Ps.StaffService.API.Controllers
 		}
 
 		[HttpGet("ignore-filter")]
-		public async Task<IActionResult> GetListIgnoreQueryFilterAsync([FromQuery] GetListHistoryScheduleIgnoreQueryFilterDto query)
+		public async Task<IActionResult> GetListIgnoreQueryFilterAsync([FromQuery] GetListHistoryScheduleIgnoreQueryFilterQuery query)
 		{
-			var result = await _sender.Send(new GetListHistoryScheduleIgnoreQueryFilterQuery { GetListHistoryScheduleIgnoreQueryFilterDto = query });
+			var result = await _sender.Send(query);
 			return Ok(new ApiResponse
 			{
 				Result = result,
@@ -51,9 +50,9 @@ namespace Pizza4Ps.StaffService.API.Controllers
 		}
 
 		[HttpGet()]
-		public async Task<IActionResult> GetListAsync([FromQuery] GetListHistoryScheduleDto query)
+		public async Task<IActionResult> GetListAsync([FromQuery] GetListHistoryScheduleQuery query)
 		{
-			var result = await _sender.Send(new GetListHistoryScheduleQuery { GetListHistoryScheduleDto = query });
+			var result = await _sender.Send(query);
 			return Ok(new ApiResponse
 			{
 				Result = result,
@@ -75,12 +74,13 @@ namespace Pizza4Ps.StaffService.API.Controllers
 		}
 
 		[HttpPut("{id}")]
-		public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] UpdateHistoryScheduleDto request)
-		{
-			var result = await _sender.Send(new UpdateHistoryScheduleCommand { Id = id, UpdateHistoryScheduleDto = request });
+		public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] UpdateHistoryScheduleCommand request)
+        {
+            request.Id = id;
+            await _sender.Send(request);
 			return Ok(new ApiResponse
 			{
-				Result = result,
+				Success = true,
 				Message = Message.UPDATED_SUCCESS,
 				StatusCode = StatusCodes.Status200OK
 			});

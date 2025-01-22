@@ -3,7 +3,7 @@ using Pizza4Ps.StaffService.Domain.Abstractions.Services;
 
 namespace Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Commands.UpdateHistorySchedule
 {
-	public class UpdateHistoryScheduleCommandHandler : IRequestHandler<UpdateHistoryScheduleCommand, UpdateHistoryScheduleCommandResponse>
+	public class UpdateHistoryScheduleCommandHandler : IRequestHandler<UpdateHistoryScheduleCommand>
 	{
 		private readonly IHistoryScheduleService _historyscheduleService;
 
@@ -12,19 +12,15 @@ namespace Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Comman
 			_historyscheduleService = historyscheduleService;
 		}
 
-		public async Task<UpdateHistoryScheduleCommandResponse> Handle(UpdateHistoryScheduleCommand request, CancellationToken cancellationToken)
+		public async Task Handle(UpdateHistoryScheduleCommand request, CancellationToken cancellationToken)
 		{
 			var result = await _historyscheduleService.UpdateAsync(
-				request.Id,
-				request.UpdateHistoryScheduleDto.SchedualDate,
-				request.UpdateHistoryScheduleDto.ShiftStart,
-				request.UpdateHistoryScheduleDto.ShiftEnd,
-				request.UpdateHistoryScheduleDto.Status,
-				request.UpdateHistoryScheduleDto.StaffId);
-			return new UpdateHistoryScheduleCommandResponse
-			{
-				Id = result
-			};
+				request.Id!.Value,
+				request.SchedualDate,
+				request.ShiftStart,
+				request.ShiftEnd,
+				request.Status,
+				request.StaffId);
 		}
 	}
 }
