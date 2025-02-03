@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
-using Pizza4Ps.StaffService.Application.DTOs.IndividualSchedules;
+using Pizza4Ps.StaffService.Application.DTOs;
 using Pizza4Ps.StaffService.Domain.Abstractions.Repositories;
 
 namespace Pizza4Ps.StaffService.Application.UserCases.V1.IndividualSchedules.Queries.GetIndividualScheduleById
 {
-	public class GetIndividualScheduleByIdQueryHandler : IRequestHandler<GetIndividualScheduleByIdQuery, GetIndividualScheduleByIdQueryResponse>
+    public class GetIndividualScheduleByIdQueryHandler : IRequestHandler<GetIndividualScheduleByIdQuery, IndividualScheduleDto>
 	{
 		private readonly IMapper _mapper;
 		private readonly IIndividualScheduleRepository _individualscheduleRepository;
@@ -16,14 +16,11 @@ namespace Pizza4Ps.StaffService.Application.UserCases.V1.IndividualSchedules.Que
 			_individualscheduleRepository = individualscheduleRepository;
 		}
 
-		public async Task<GetIndividualScheduleByIdQueryResponse> Handle(GetIndividualScheduleByIdQuery request, CancellationToken cancellationToken)
+		public async Task<IndividualScheduleDto> Handle(GetIndividualScheduleByIdQuery request, CancellationToken cancellationToken)
 		{
-			var entity = await _individualscheduleRepository.GetSingleByIdAsync(request.Id, request.includeProperties);
+			var entity = await _individualscheduleRepository.GetSingleByIdAsync(request.Id, request.IncludeProperties);
 			var result = _mapper.Map<IndividualScheduleDto>(entity);
-			return new GetIndividualScheduleByIdQueryResponse
-			{
-				IndividualSchedule = result
-			};
+			return result;
 		}
 	}
 }

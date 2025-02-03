@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
+using Pizza4Ps.StaffService.Application.Abstractions;
 using Pizza4Ps.StaffService.Domain.Abstractions.Services;
 
 namespace Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Commands.CreateHistorySchedule
 {
-	public class CreateHistoryScheduleCommandHandler : IRequestHandler<CreateHistoryScheduleCommand, CreateHistoryScheduleCommandResponse>
+	public class CreateHistoryScheduleCommandHandler : IRequestHandler<CreateHistoryScheduleCommand, ResultDto<Guid>>
 	{
 		private readonly IMapper _mapper;
 		private readonly IHistoryScheduleService _historyscheduleService;
@@ -15,16 +16,16 @@ namespace Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Comman
 			_historyscheduleService = historyscheduleService;
 		}
 
-		public async Task<CreateHistoryScheduleCommandResponse> Handle(CreateHistoryScheduleCommand request, CancellationToken cancellationToken)
+		public async Task<ResultDto<Guid>> Handle(CreateHistoryScheduleCommand request, CancellationToken cancellationToken)
 		{
 			var result = await _historyscheduleService.CreateAsync(
-				request.CreateHistoryScheduleDto.SchedualDate,
-				request.CreateHistoryScheduleDto.ShiftStart,
-				request.CreateHistoryScheduleDto.ShiftEnd,
-				request.CreateHistoryScheduleDto.Status,
-				request.CreateHistoryScheduleDto.StaffId);
-			return new CreateHistoryScheduleCommandResponse
-			{
+				request.SchedualDate,
+				request.ShiftStart,
+				request.ShiftEnd,
+				request.Status,
+				request.StaffId);
+			return new ResultDto<Guid>
+            {
 				Id = result
 			};
 		}
