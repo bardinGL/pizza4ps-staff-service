@@ -5,17 +5,22 @@ VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{14702133-4E75-49E6-923F-EE3C15350881}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza4Ps.StaffService.API", "src\Pizza4Ps.StaffService.API\Pizza4Ps.StaffService.API.csproj", "{85B28762-A26C-4E78-83DA-5051855B65B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizza4Ps.StaffService.API", "src\Pizza4Ps.StaffService.API\Pizza4Ps.StaffService.API.csproj", "{85B28762-A26C-4E78-83DA-5051855B65B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza4Ps.StaffService.Application", "src\Pizza4Ps.StaffService.Application\Pizza4Ps.StaffService.Application.csproj", "{F4C26A74-73AD-46B5-8218-85BB995D3472}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizza4Ps.StaffService.Application", "src\Pizza4Ps.StaffService.Application\Pizza4Ps.StaffService.Application.csproj", "{F4C26A74-73AD-46B5-8218-85BB995D3472}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza4Ps.StaffService.Persistence", "src\Pizza4Ps.StaffService.Persistence\Pizza4Ps.StaffService.Persistence.csproj", "{63BB947E-BECB-4573-AA0D-C9B8F72E19AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizza4Ps.StaffService.Persistence", "src\Pizza4Ps.StaffService.Persistence\Pizza4Ps.StaffService.Persistence.csproj", "{63BB947E-BECB-4573-AA0D-C9B8F72E19AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza4Ps.StaffService.Infrastructure", "src\Pizza4Ps.StaffService.Infrastructure\Pizza4Ps.StaffService.Infrastructure.csproj", "{E76C00FC-3F63-41F8-8518-C7343532D30C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizza4Ps.StaffService.Infrastructure", "src\Pizza4Ps.StaffService.Infrastructure\Pizza4Ps.StaffService.Infrastructure.csproj", "{E76C00FC-3F63-41F8-8518-C7343532D30C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza4Ps.StaffService.Domain", "src\Pizza4Ps.StaffService.Domain\Pizza4Ps.StaffService.Domain.csproj", "{8B3FA804-F8A0-4141-8E43-68894989E3F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizza4Ps.StaffService.Domain", "src\Pizza4Ps.StaffService.Domain\Pizza4Ps.StaffService.Domain.csproj", "{8B3FA804-F8A0-4141-8E43-68894989E3F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza4Ps.StaffService.Application.Contract", "src\Pizza4Ps.StaffService.Application.Contract\Pizza4Ps.StaffService.Application.Contract.csproj", "{3985ABB4-4909-4022-97D8-AED31E4DF585}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizza4Ps.StaffService.Application.Contract", "src\Pizza4Ps.StaffService.Application.Contract\Pizza4Ps.StaffService.Application.Contract.csproj", "{3985ABB4-4909-4022-97D8-AED31E4DF585}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49A22EA9-1CF7-491A-A237-1EB40C808BA4}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
