@@ -59,6 +59,7 @@ namespace Pizza4Ps.StaffService.API.Setup
         private static void RegisterApiServices(IServiceCollection services)
         {
             services.AddSwaggerAuthUI();
+            //services.AddServiceStaffClient();
         }
 
         private static void RegisterInfrastructureServices(IServiceCollection services)

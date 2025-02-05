@@ -2,12 +2,13 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pizza4Ps.StaffService.Application.DTOs.HistorySchedules;
+using Pizza4Ps.StaffService.Application.Abstractions;
+using Pizza4Ps.StaffService.Application.DTOs;
 using Pizza4Ps.StaffService.Domain.Abstractions.Repositories;
 
 namespace Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Queries.GetListHistoryScheduleIgnoreQueryFilter
 {
-	public class GetListHistoryScheduleIgnoreQueryFilterQueryHandler : IRequestHandler<GetListHistoryScheduleIgnoreQueryFilterQuery, GetListHistoryScheduleIgnoreQueryFilterQueryResponse>
+    public class GetListHistoryScheduleIgnoreQueryFilterQueryHandler : IRequestHandler<GetListHistoryScheduleIgnoreQueryFilterQuery, PaginatedResultDto<HistoryScheduleDto>>
 	{
 		private readonly IMapper _mapper;
 		private readonly IHistoryScheduleRepository _historyscheduleRepository;
@@ -18,22 +19,22 @@ namespace Pizza4Ps.StaffService.Application.UserCases.V1.HistorySchedules.Querie
 			_historyscheduleRepository = historyscheduleRepository;
 		}
 
-		public async Task<GetListHistoryScheduleIgnoreQueryFilterQueryResponse> Handle(GetListHistoryScheduleIgnoreQueryFilterQuery request, CancellationToken cancellationToken)
+		public async Task<PaginatedResultDto<HistoryScheduleDto>> Handle(GetListHistoryScheduleIgnoreQueryFilterQuery request, CancellationToken cancellationToken)
 		{
-			var query = _historyscheduleRepository.GetListAsNoTracking(includeProperties: request.GetListHistoryScheduleIgnoreQueryFilterDto.includeProperties).IgnoreQueryFilters()
+			var query = _historyscheduleRepository.GetListAsNoTracking(includeProperties: request.IncludeProperties).IgnoreQueryFilters()
 				.Where(
-					x => (request.GetListHistoryScheduleIgnoreQueryFilterDto.SchedualDate == null || x.SchedualDate == request.GetListHistoryScheduleIgnoreQueryFilterDto.SchedualDate)
-					&& (request.GetListHistoryScheduleIgnoreQueryFilterDto.ShiftStart == null || x.ShiftStart == request.GetListHistoryScheduleIgnoreQueryFilterDto.ShiftStart)
-					&& (request.GetListHistoryScheduleIgnoreQueryFilterDto.ShiftEnd == null || x.ShiftEnd == request.GetListHistoryScheduleIgnoreQueryFilterDto.ShiftEnd)
-					&& (request.GetListHistoryScheduleIgnoreQueryFilterDto.Status == null || x.Status.Contains(request.GetListHistoryScheduleIgnoreQueryFilterDto.Status))
-					&& (request.GetListHistoryScheduleIgnoreQueryFilterDto.StaffId == null || x.StaffId == request.GetListHistoryScheduleIgnoreQueryFilterDto.StaffId)
-					&& x.IsDeleted == request.GetListHistoryScheduleIgnoreQueryFilterDto.IsDeleted);
+					x => (request.SchedualDate == null || x.SchedualDate == request.SchedualDate)
+					&& (request.ShiftStart == null || x.ShiftStart == request.ShiftStart)
+					&& (request.ShiftEnd == null || x.ShiftEnd == request.ShiftEnd)
+					&& (request.Status == null || x.Status.Contains(request.Status))
+					&& (request.StaffId == null || x.StaffId == request.StaffId)
+					&& x.IsDeleted == request.IsDeleted);
 			var entities = await query
-				.OrderBy(request.GetListHistoryScheduleIgnoreQueryFilterDto.SortBy)
-				.Skip(request.GetListHistoryScheduleIgnoreQueryFilterDto.SkipCount).Take(request.GetListHistoryScheduleIgnoreQueryFilterDto.TakeCount).ToListAsync();
+				.OrderBy(request.SortBy)
+				.Skip(request.SkipCount).Take(request.TakeCount).ToListAsync();
 			var result = _mapper.Map<List<HistoryScheduleDto>>(entities);
 			var totalCount = await query.CountAsync();
-			return new GetListHistoryScheduleIgnoreQueryFilterQueryResponse(result, totalCount);
+			return new PaginatedResultDto<HistoryScheduleDto>(result, totalCount);
 		}
 	}
 }
