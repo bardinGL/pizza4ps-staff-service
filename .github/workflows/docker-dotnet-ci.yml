@@ -41,6 +41,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          no-cache: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/pizza4ps-staff-service:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/pizza4ps-staff-service:v${{ github.run_number }}
