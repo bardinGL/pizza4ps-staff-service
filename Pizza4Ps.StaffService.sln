@@ -17,6 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizza4Ps.StaffService.Domai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizza4Ps.StaffService.Application.Contract", "src\Pizza4Ps.StaffService.Application.Contract\Pizza4Ps.StaffService.Application.Contract.csproj", "{3985ABB4-4909-4022-97D8-AED31E4DF585}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84499D04-C81E-408D-944E-0BA0971E4FE3}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

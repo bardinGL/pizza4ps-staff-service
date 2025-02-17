@@ -23,8 +23,8 @@
     <ProjectReference Include="..\Pizza4Ps.StaffService.Domain\Pizza4Ps.StaffService.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<Folder Include="Migrations\" />
+	</ItemGroup>
+	
 </Project>
