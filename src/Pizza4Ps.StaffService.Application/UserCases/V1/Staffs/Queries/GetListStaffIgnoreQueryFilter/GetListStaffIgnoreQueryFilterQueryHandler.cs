@@ -27,8 +27,8 @@ namespace Pizza4Ps.StaffService.Application.UserCases.V1.Staffs.Queries.GetListS
 					&& (request.Name == null || x.Name.Contains(request.Name))
 					&& (request.Phone == null || x.Phone.Contains(request.Phone))
 					&& (request.Email == null || x.Email.Contains(request.Email))
-					&& (request.StaffType == null || x.StaffType == request.StaffType)
-					&& (request.Status == null || x.Status == request.Status)
+					&& (request.Type == null || x.Type.Equals(request.Type))
+					&& (request.RoleId == null || x.RoleId == request.RoleId)
 					&& x.IsDeleted == request.IsDeleted);
 			var entities = await query
 				.OrderBy(request.SortBy)

@@ -9,12 +9,5 @@
 			Cheff,
 			HeadChef
 		}
-
-		public enum StaffStatus
-		{
-			PartTime,
-			FullTime,
-			Inactivity,
-		}
 	}
 }

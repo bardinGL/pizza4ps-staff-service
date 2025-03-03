@@ -23,8 +23,8 @@ namespace Pizza4Ps.StaffService.Application.UserCases.V1.Staffs.Commands.CreateS
 				request.Name,
 				request.Phone,
 				request.Email,
-				request.StaffType,
-				request.Status);
+				request.Type,
+				request.RoleId);
 			return new ResultDto<Guid>
 			{
 				Id = result

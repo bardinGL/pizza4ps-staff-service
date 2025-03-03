@@ -22,7 +22,13 @@ namespace Pizza4Ps.StaffService.Persistence.Constants
 		internal const string HistorySchedule = nameof(HistorySchedule);
 		internal const string IndividualSchedule = nameof(IndividualSchedule);
 		internal const string ShiftExchange = nameof(ShiftExchange);
-		internal const string Staff = nameof(Staff);
 		internal const string Store = nameof(Store);
-	}
+
+        internal const string Day = nameof(Day);
+        internal const string Role = nameof(Role);
+        internal const string Shift = nameof(Shift);
+        internal const string ShiftRegistration = nameof(ShiftRegistration);
+        internal const string ShiftSchedule= nameof(ShiftSchedule);
+        internal const string Staff = nameof(Staff);
+    }
 }
